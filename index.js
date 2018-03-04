@@ -5,7 +5,7 @@ const knex           = require('./databases/mysqlConnection');
 const router         = require('./routers');
 const app            = express();
 const Factory        = require('./book/book-factory');
-const Searcher       = require('./book-searching-service/seacher');
+const Searcher       = require('./book-searching-service/searcher');
 
 let bookFactory = new Factory();
 
