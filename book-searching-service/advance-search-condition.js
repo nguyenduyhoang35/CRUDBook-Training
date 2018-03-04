@@ -7,8 +7,8 @@ class AdvanceSearchCondition {
      * @param {string} publisher
      */
     constructor(title, author, publisher) {
-        this.title = title;
-        this.author = author;
+        this.title     = title;
+        this.author    = author;
         this.publisher = publisher;
     }
 
