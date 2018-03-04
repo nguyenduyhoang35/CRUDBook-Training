@@ -1,5 +1,6 @@
 const Book = require('./book');
-class BookFactory{
+
+class BookFactory {
 
     /**
      *
@@ -15,4 +16,5 @@ class BookFactory{
         return book;
     }
 }
+
 module.exports = BookFactory;
