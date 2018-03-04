@@ -1,8 +1,8 @@
 const knex = require('knex')({
-    client:'mysql',
+    client    :'mysql',
     connection:{
-        host:'localhost',
-        user:'root',
+        host    :'localhost',
+        user    :'root',
         password:'123456',
         database:'CRUDBook'
     }
