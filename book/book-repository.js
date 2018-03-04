@@ -1,5 +1,6 @@
 const BookFactory = require('./book-factory');
 const Book        = require('./book');
+
 class BookRepository {
 
     /**
@@ -9,8 +10,9 @@ class BookRepository {
      */
     constructor(connection, factory) {
         this.connection = connection;
-        this.factory = factory;
+        this.factory    = factory;
     }
+
     /**
      *
      * @param {Book} book
@@ -63,9 +65,7 @@ class BookRepository {
             .select().from('books').where({deleted_at:null, id : bookid}).then(function (result) {
                 return factory.make(result);
             });
-
     }
-
 }
 
 module.exports = BookRepository;
