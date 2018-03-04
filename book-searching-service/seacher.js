@@ -6,10 +6,7 @@ class Searcher {
     }
 
     /**
-     *
-     * @param title
-     * @param author
-     * @param publisher
+     * @param   condition
      * @return {Promise<Book[]>}
      */
     search(condition) {
@@ -21,3 +18,4 @@ class Searcher {
 }
 
 module.exports = Searcher;
+

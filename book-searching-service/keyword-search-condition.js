@@ -1,18 +1,20 @@
 class KeywordSearchCondition {
 
+    /**
+     *
+     * @param {string} keyword
+     */
     constructor(keyword) {
         this.keyword = keyword;
     }
 
     describe(sqlQuery) {
-        return
-        sqlQuery.where(function () {
+        return sqlQuery.where(function () {
             this.where('title', 'like', '%' + this.keyword + '%')
                 .orWhere('author', 'like', '%' + this.keyword + '%')
                 .orWhere('publisher', 'like', '%' + this.keyword + '%')
         }).where({deleted_at: null});
     }
-
 }
 
 module.exports = KeywordSearchCondition;

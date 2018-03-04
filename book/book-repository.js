@@ -1,6 +1,7 @@
 const BookFactory = require('./book-factory');
-const Book = require('./book');
+const Book        = require('./book');
 class BookRepository {
+
     /**
      *
      * @param {BookFactory} factory
