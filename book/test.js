@@ -1,4 +1,4 @@
-const knex                   = require('../databases/mysqlConnection');
+const knex                   = require('../databases/mysql-connection');
 const BookRepository         = require('./book-repository');
 const Book                   = require('./book');
 const BookFactory            = require('./book-factory');
