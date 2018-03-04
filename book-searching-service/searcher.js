@@ -10,7 +10,7 @@ class Searcher {
      * @return {Promise<Book[]>}
      */
     search(condition) {
-        let factory = this.factory;
+        let factory  = this.factory;
         let sqlQuery = this.connection.select('id', 'title', 'author', 'publisher', 'price').from('books');
         condition.describe(sqlQuery);
         return sqlQuery.then(results => results.map(element => factory.make(element)));
@@ -18,4 +18,3 @@ class Searcher {
 }
 
 module.exports = Searcher;
-
