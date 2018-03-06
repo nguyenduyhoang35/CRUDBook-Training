@@ -20,8 +20,8 @@ class AdvanceSearchCondition {
     describe(sqlQuery) {
         return sqlQuery.where('title', 'like', '%' + this.title + '%')
             .where('author', 'like', '%' + this.author + '%')
-            .where('publisher', 'like', '%' + this.publisher + '%')
-            .where({deleted_at: null});
+            .where('publishers.name', 'like', '%' + this.publisher + '%')
+            .where({'books.deleted_at': null});
     }
 }
 
