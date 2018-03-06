@@ -6,7 +6,7 @@ const checkTitleAuthorLength    = require('../middleware/check-length-title-auth
 const putBookRequest            = require('../middleware/put-book-request');
 const publisherRequest          = require('../middleware/publisher-request');
 const priceDefaultValue         = require('../middleware/price-default-value');
-const Router                    = require("express").Router;
+const Router                    = require('express').Router;
 
 let router          = new Router();
 let bookController  = new BookController();
@@ -14,11 +14,11 @@ let bookController  = new BookController();
 let middlewareOfPost = [checkTitleAuthorNull, checkTitleAuthorLength, priceDefaultValue, publisherRequest, postBookRequest];
 let middlewareOfPut  = [checkTitleAuthorNull, checkTitleAuthorLength, priceDefaultValue, publisherRequest, putBookRequest];
 
-router.get('/books', bookController.getAll);
+router.get('/books', SearchConditionMiddleware, bookController.search);
 
-router.get('/book/:id', bookController.searchBook);
+router.get('/book/:id', SearchConditionMiddleware, bookController.search);
 
-router.post("/book", middlewareOfPost, bookController.createBook);
+router.post('/book', middlewareOfPost, bookController.createBook);
 
 router.delete('/book/:id', bookController.deleteBook);
 
