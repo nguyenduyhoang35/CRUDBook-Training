@@ -1,10 +1,10 @@
-const Publisher = require('../publisher/publisher');
-const knex      = require('../databases/mysql-connection');
+const Publisher        = require('../publisher/publisher');
+const PublisherFactory = require('../publisher/publisher-factory');
+const knex             = require('../databases/mysql-connection');
+
 module.exports = function (req, res, next) {
-    getPublisherRowData(knex, req.body.publisher).then(function (publisher) {
-        console.log(publisher);
+    getPublisherRowData(knex, req.body.publisher_id).then(function (publisher) {
         req.publisher = publisher;
-        console.log(req.publisher);
         next();
     });
 };
@@ -12,12 +12,13 @@ module.exports = function (req, res, next) {
 function getPublisherRowData(knex, publisher_id) {
     return knex.select().from('publishers').where({ id : publisher_id})
         .then(function (results) {
-                let publisher = new Publisher(results[0].name);
-                publisher.setId(results[0].id);
-                publisher.setAddress(results[0].address);
-                publisher.setPhone(results[0].phone_number);
-                return publisher;
-            });
+            if (results.length === 0) {
+                return new Publisher('');
+            }
+
+            let publisher = new PublisherFactory();
+            return publisher.makePublisherFromData(results[0]);
+        });
 }
 
 /*getPublisherRowData(knex, 1).then(function (result) {
