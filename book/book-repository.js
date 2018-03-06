@@ -20,7 +20,12 @@ class BookRepository {
      */
     add(book) {
         return this.connection('books')
-            .insert({title:book.getTitle(),author:book.getAuthor(),publisher:book.getPublisher(),price:book.getPrice()})
+            .insert({
+                      title        : book.getTitle(),
+                      author       : book.getAuthor(),
+                      publisher_id : book.getPublisher().getId(),
+                      price        : book.getPrice()
+            })
             .then(insertedIds =>{
                 book.setId(insertedIds[0]);
                 return book;
@@ -34,7 +39,7 @@ class BookRepository {
      */
     edit(book) {
         return this.connection('books')
-            .update({title:book.getTitle(),author:book.getAuthor(),publisher:book.getPublisher(),price:book.getPrice()})
+            .update({title:book.getTitle(),author:book.getAuthor(),publisher:book.getPublisher().getId(),price:book.getPrice()})
             .where({id:book.getId()});
     }
 
@@ -59,12 +64,24 @@ class BookRepository {
                     })});
     }
 
-    get(bookid) {
+    get(bookId) {
         let factory = this.factory;
-        return this.connection.column(['id','title','author','publisher','price'])
-            .select().from('books').where({deleted_at:null, id : bookid}).then(function (result) {
-                return factory.make(result);
+        return this.connection.column(['books.id', 'title', 'author', 'publisher_id', 'publishers.name', 'price'])
+            .select().from('books').innerJoin('publishers', function () {
+                this.on('publisher_id', '=','publishers.id')
+            }).where({ 'books.deleted_at' : null,
+                       'books.id'         : bookId, })
+            .then(function (results) {
+                return results.map(function (result) {
+                    return factory.make(result);
+                });
             });
+        /*return this.connection.column(['id','title','author','publisher_id','price'])
+            .select().from('books').where({deleted_at : null, id : bookId }).then(function (results) {
+                return results.map(function (result) {
+                    return factory.make(result);
+                });
+            });*/
     }
 }
 
