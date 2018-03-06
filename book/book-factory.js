@@ -10,12 +10,12 @@ class BookFactory {
      */
     make(bookRawData) {
         let book = new Book(bookRawData.title);
-        let publisher = new Publisher(bookRawData.name);
-        publisher.setId(bookRawData.publisher_id);
         book.setAuthor(bookRawData.author);
-        book.setPublisher(publisher);
         book.setPrice(bookRawData.price);
         book.setId(bookRawData.id);
+        let publisher = new Publisher(bookRawData.name);
+        publisher.setId(bookRawData.publisher_id);
+        book.setPublisher(publisher);
         return book;
     }
 }
