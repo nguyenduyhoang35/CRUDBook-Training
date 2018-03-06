@@ -4,7 +4,7 @@ class IdSearchCondition {
         this.bookId = bookId;
     }
 
-    descrebe (sqlQuery) {
+    describe (sqlQuery) {
         return sqlQuery.where({deleted_at: null, id: this.bookId});
     }
 }
