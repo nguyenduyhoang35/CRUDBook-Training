@@ -21,7 +21,7 @@ book.setPrice(8.3);
 
 bookRepo.get(1).then(function (results) {
     let book = results.map(function (result) {
-        return result;
+        return result.toJson();
     });
     console.log(book);
 });
