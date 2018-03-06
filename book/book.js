@@ -51,7 +51,7 @@ class Book {
 
     /**
      *
-     * @param {string} publisher
+     * @param {Publisher} publisher
      */
     setPublisher(publisher) {
         this.publisher = publisher;
@@ -59,7 +59,7 @@ class Book {
 
     /**
      *
-     * @return {string|""}
+     * @return {Publisher||null}
      */
     getPublisher() {
         return this.publisher;
@@ -83,11 +83,14 @@ class Book {
      */
     toJson() {
         return {
-            id       :this.getId(),
-            title    :this.getTitle(),
-            author   :this.getAuthor(),
-            publisher:this.getPublisher(),
-            price    :this.getPrice()
+            id       : this.getId(),
+            title    : this.getTitle(),
+            author   : this.getAuthor(),
+            publisher: {
+                id   : this.getPublisher().getId(),
+                name : this.getPublisher().getName()
+            },
+            price    : this.getPrice()
         }
     }
 }
