@@ -51,38 +51,6 @@ class BookRepository {
     remove(id) {
         return this.connection('books').update({deleted_at:Date().toString()}).where({id:id});
     }
-
-    /**
-     * @return {promise <void>}
-     */
-    all() {
-        let factory = this.factory;
-        return this.connection.column(['id','title','author','publisher','price'])
-                    .select().from('books').where({deleted_at:null})
-                    .then(results =>{return results.map(function (element) {
-                        return factory.make(element);
-                    })});
-    }
-
-    get(bookId) {
-        let factory = this.factory;
-        return this.connection.column(['books.id', 'title', 'author', 'publisher_id', 'publishers.name', 'price'])
-            .select().from('books').innerJoin('publishers', function () {
-                this.on('publisher_id', '=','publishers.id')
-            }).where({ 'books.deleted_at' : null,
-                       'books.id'         : bookId, })
-            .then(function (results) {
-                return results.map(function (result) {
-                    return factory.make(result);
-                });
-            });
-        /*return this.connection.column(['id','title','author','publisher_id','price'])
-            .select().from('books').where({deleted_at : null, id : bookId }).then(function (results) {
-                return results.map(function (result) {
-                    return factory.make(result);
-                });
-            });*/
-    }
 }
 
 module.exports = BookRepository;
