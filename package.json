@@ -12,7 +12,8 @@
     "body-parser": "*",
     "express": "*",
     "knex": "^0.14.4",
-    "mysql": "*"
+    "mysql": "*",
+    "mysql-migrations": "^1.0.4"
   },
   "devDependencies": {
     "@types/express": "^4.11.1"
