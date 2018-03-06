@@ -39,8 +39,11 @@ class BookController {
 
     searchBook(request, response) {
         let repo = request.app.get('books');
-        repo.get(request.params.id).then(function (result) {
-            response.status(200).send(result.toJson());
+        repo.get(request.params.id).then(function (books) {
+            let bookResults = books.map(function (book) {
+                return book.toJson();
+            });
+            response.status(200).send(bookResults);
         });
     }
 
