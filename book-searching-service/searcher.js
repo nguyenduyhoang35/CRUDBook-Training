@@ -11,7 +11,10 @@ class Searcher {
      */
     search(condition) {
         let factory  = this.factory;
-        let sqlQuery = this.connection.select('id', 'title', 'author', 'publisher', 'price').from('books');
+        let sqlQuery = this.connection.select('books.id', 'title', 'author', 'publisher_id', 'price','name')
+            .from('books').innerJoin('publishers', function () {
+                this.on('books.publisher_id', '=', 'publishers.id')
+            });
         condition.describe(sqlQuery);
         return sqlQuery.then(results => results.map(element => factory.make(element)));
     }
