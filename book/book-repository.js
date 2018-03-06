@@ -39,7 +39,7 @@ class BookRepository {
      */
     edit(book) {
         return this.connection('books')
-            .update({title:book.getTitle(),author:book.getAuthor(),publisher:book.getPublisher().getId(),price:book.getPrice()})
+            .update({title:book.getTitle(),author:book.getAuthor(),publisher_id:book.getPublisher().getId(),price:book.getPrice()})
             .where({id:book.getId()});
     }
 
