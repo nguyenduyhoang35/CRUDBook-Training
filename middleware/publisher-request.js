@@ -16,8 +16,8 @@ function getPublisherRowData(knex, publisher_id) {
                 return new Publisher('');
             }
 
-            let publisher = new PublisherFactory();
-            return publisher.makePublisherFromData(results[0]);
+            let publisherFactory = new PublisherFactory();
+            return publisherFactory.makePublisherFromData(results[0]);
         });
 }
 
