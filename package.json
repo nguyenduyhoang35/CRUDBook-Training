@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "*",
+    "dotenv": "^5.0.1",
     "express": "*",
     "knex": "^0.14.4",
     "mysql": "*",
