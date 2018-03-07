@@ -1,16 +1,13 @@
-const BookFactory = require('./book-factory');
 const Book        = require('./book');
 
 class BookRepository {
 
     /**
      *
-     * @param {BookFactory} factory
      * @param connection
      */
-    constructor(connection, factory) {
+    constructor(connection) {
         this.connection = connection;
-        this.factory    = factory;
     }
 
     /**
