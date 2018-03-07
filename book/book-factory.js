@@ -1,9 +1,9 @@
 const Book              = require('./book');
 const Publisher         = require('../publisher/publisher');
 const PublisherProvider = require('../publisher/publisher-provider');
-const knexConnection    = require('../publisher/publisher-provider');
+const knexConnection    = require('../databases/mysql-connection');
 
-let publisherProvider   = new PublisherProvider();
+let publisherProvider   = new PublisherProvider(knexConnection);
 
 class BookFactory {
 
