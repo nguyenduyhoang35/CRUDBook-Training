@@ -9,11 +9,12 @@ class KeywordSearchCondition {
     }
 
     describe(sqlQuery) {
+        let keyword = this.keyword;
         return sqlQuery.where(function () {
-            this.where('title', 'like', '%' + this.keyword + '%')
-                .orWhere('author', 'like', '%' + this.keyword + '%')
-                .orWhere('publisher', 'like', '%' + this.keyword + '%')
-        }).where({deleted_at: null});
+            this.where('title', 'like', '%' + keyword + '%')
+                .orWhere('author', 'like', '%' + keyword + '%')
+                .orWhere('publishers.name', 'like', '%' + keyword + '%')
+        }).where({'books.deleted_at': null});
     }
 }
 
