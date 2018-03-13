@@ -30,6 +30,12 @@ class BookController {
             .then(books => response.render('detail.njk', {book:books[0]}))
             .catch(next)
     }
+
+    renderAddBook(request, response, next) {
+        request.app.get('publisherProvider').provideAll()
+            .then(publishers => response.render('create-book.njk', {publishers:publishers}))
+            .catch(next)
+    }
 }
 
 module.exports = BookController;
