@@ -5,6 +5,26 @@
     <title>Title</title>
 </head>
 <body>
-    <header></header>
+    <header>
+        <h2>CRUD Books</h2>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/books">Home</a></li>
+        </ul>
+        <form action="/search-basic" method="get">
+            <input name="keyword" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+    </nav>
+    <section>
+        <ul>
+            {% for book in books %}
+            <li>
+                <a href="/book/{{book.getId()}}">{{book.getTitle()}}-{{book.getPublisher().getName()}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
 </body>
 </html>
