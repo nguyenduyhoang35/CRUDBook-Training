@@ -18,18 +18,12 @@ router.get('/add', bookController.renderAddBook);
 
 router.post('/book', middlewareOfPost, bookController.createBook);
 
-router.get('/', function (req, res) {
-    res.render('home.ejs');
-    res.end();
-});
+router.get('/', bookController.renderHomeBook);
 
 router.get('/search-basic', SearchConditionMiddleware, bookController.search);
 
 router.get('/search-advance', SearchConditionMiddleware, bookController.search);
 
-router.get('/detail/:id', function (req, res) {
-    res.render('detail.ejs');
-    res.end();
-});
+router.get('/detail/:id', bookController.renderDetailBook);
 
 module.exports = router;
