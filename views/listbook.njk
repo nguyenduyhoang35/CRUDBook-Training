@@ -16,12 +16,23 @@
             <input name="keyword" placeholder="Search...">
             <button type="submit">Search</button>
         </form>
+        <div>
+            <form action="/search-advance" method="get">
+                <input name="title" id="title" placeholder="Enter Title">
+                <input name="author" id="author" placeholder="Enter Author">
+                <input name="publisher" id="publisher" placeholder="Enter publisher">
+                <button type="submit">Search Advance</button>
+            </form>
+        </div>
     </nav>
     <section>
+        <a href="/add">New Book</a>
         <ul>
             {% for book in books %}
             <li>
                 <a href="/book/{{book.getId()}}">{{book.getTitle()}}-{{book.getPublisher().getName()}}</a>
+                |<a href="/book/{{book.getId()}}">Edit</a>
+                |<a href="/book/{{book.getId()}}">Delete</a>
             </li>
             {% endfor %}
         </ul>
