@@ -33,7 +33,7 @@ class BookFactory {
         book.setPrice(requestBody.price);
         book.setAuthor(requestBody.author);
         return publisherProvider.provide(requestBody.publisher_id)
-            .then(function(publisher) {
+            .then((publisher) => {
                 book.setPublisher(publisher);
                 return book;
             });

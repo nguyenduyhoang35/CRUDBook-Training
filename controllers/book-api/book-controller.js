@@ -13,6 +13,11 @@ class BookController {
         });
     }
 
+    /***
+     *
+     * @param request
+     * @param response
+     */
     deleteBook(request, response) {
         let repo = request.app.get('books');
         repo.remove(request.params.id).then(function () {
@@ -20,6 +25,11 @@ class BookController {
         });
     }
 
+    /***
+     *
+     * @param request
+     * @param response
+     */
     editBook(request, response) {
         let repo = request.app.get('books');
         repo.edit(request.book).then(function () {
@@ -27,9 +37,35 @@ class BookController {
         });
     }
 
+    /***
+     *
+     * @param request
+     * @param response
+     * @param next
+     */
     search(request, response, next) {
         request.app.get('book.searcher').search(request.searchCondition)
-            .then((results) => response.status(200).send(results.map(result => result.toJson())))
+            .then((books) =>response.status(200).json(books.map(function (book) {
+                return book.toJson();
+            })))
+            .catch(next)
+    }
+
+    /***
+     *
+     * @param request
+     * @param response
+     * @param next
+     */
+    searchRender(request, response, next) {
+        request.app.get('book.searcher').search(request.searchCondition)
+            .then(books => response.render('listbook.njk', {books:books}))
+            .catch(next)
+    }
+
+    detailRender(request, response, next) {
+        request.app.get('book.searcher').search(request.searchCondition)
+            .then(books => response.render('detail.njk', {book:books[0]}))
             .catch(next)
     }
 }

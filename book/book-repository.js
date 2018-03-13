@@ -1,4 +1,4 @@
-const Book        = require('./book');
+const Book = require('./book');
 
 class BookRepository {
 
@@ -40,7 +40,7 @@ class BookRepository {
                       author       : book.getAuthor(),
                       publisher_id : book.getPublisher().getId() ? book.getPublisher().getId() : null,
                       price        : book.getPrice()
-            }).where({id:book.getId()});
+            }).where({ id : book.getId()});
     }
 
     /**
@@ -49,7 +49,7 @@ class BookRepository {
      * @return {promise <void>}
      */
     remove(id) {
-        return this.connection('books').update({deleted_at:Date().toString()}).where({id:id});
+        return this.connection('books').update({ deleted_at : Date() }).where({ id : id });
     }
 }
 

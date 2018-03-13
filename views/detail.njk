@@ -1,0 +1,25 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <header>
+            <h1>
+                {{book.getTitle()}}
+            </h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="/books">Home</a></li>
+            </ul>
+        </nav>
+        <section>
+            <small>
+                {{book.getAuthor()}}
+            </small>
+            <small>
+                {{book.getPublisher().getName()}}
+            </small>
+        </section>
+    </body>
+</html>
