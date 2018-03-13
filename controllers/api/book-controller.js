@@ -50,24 +50,6 @@ class BookController {
             })))
             .catch(next)
     }
-
-    /***
-     *
-     * @param request
-     * @param response
-     * @param next
-     */
-    searchRender(request, response, next) {
-        request.app.get('book.searcher').search(request.searchCondition)
-            .then(books => response.render('listbook.njk', {books:books}))
-            .catch(next)
-    }
-
-    detailRender(request, response, next) {
-        request.app.get('book.searcher').search(request.searchCondition)
-            .then(books => response.render('detail.njk', {book:books[0]}))
-            .catch(next)
-    }
 }
 
 module.exports = BookController;

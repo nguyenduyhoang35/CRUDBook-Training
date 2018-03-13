@@ -4,6 +4,15 @@ class BookController {
 
     }
 
+    createBook(request, response, next) {
+        let repo = request.app.get('books');
+        repo.add(request.book).then(function () {
+            response.redirect('/books');
+        }).catch(function (err) {
+            next(err);
+        });
+    }
+
     /***
      *
      * @param request
