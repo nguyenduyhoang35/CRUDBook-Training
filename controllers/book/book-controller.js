@@ -36,6 +36,25 @@ class BookController {
             .then(publishers => response.render('create-book.njk', {publishers:publishers}))
             .catch(next)
     }
+
+    renderHomeBook(request, response) {
+        response.render('home.njk');
+    }
+
+    renderEditBook(request, response, next) {
+        request.app.get('book.searcher').search(request.searchCondition)
+            .then(function (books) {
+                request.book = books[0];
+               return request.app.get('publisherProvider').provideAll()
+            }).then(function (publishers) {
+                response.render('edit-book.njk', {publishers:publishers, book:request.book})
+            })
+            .catch(next)
+    }
+
+    renderDetailBook(request, response) {
+        response.render('detail.njk');
+    }
 }
 
 module.exports = BookController;
