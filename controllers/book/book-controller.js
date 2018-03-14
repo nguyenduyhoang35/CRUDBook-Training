@@ -13,6 +13,23 @@ class BookController {
         });
     }
 
+    deleteBook(request, response, next) {
+        let repo = request.app.get('books');
+        repo.remove(request.params.id).then(function () {
+           response.redirect('/books');
+        }).catch(function (err) {
+            next(err);
+        });
+    }
+
+    editBook(request, response, next) {
+        let repo = request.app.get('books');
+        repo.edit(request.book).then(function () {
+            response.redirect('/books');
+        }).catch(function (err) {
+            next(err);
+        });
+    }
     /***
      *
      * @param request
@@ -21,7 +38,7 @@ class BookController {
      */
     search(request, response, next) {
         request.app.get('book.searcher').search(request.searchCondition)
-            .then(books => response.render('listbook.njk', {books:books}))
+            .then(books => response.render('list-book.njk', {books:books}))
             .catch(next)
     }
 
@@ -42,14 +59,11 @@ class BookController {
     }
 
     renderEditBook(request, response, next) {
-        request.app.get('book.searcher').search(request.searchCondition)
-            .then(function (books) {
-                request.book = books[0];
-               return request.app.get('publisherProvider').provideAll()
-            }).then(function (publishers) {
-                response.render('edit-book.njk', {publishers:publishers, book:request.book})
-            })
-            .catch(next)
+        let publishersPromise = request.app.get('publisherProvider').provideAll();
+        let bookPromise       = request.app.get('book.searcher').search(request.condition);
+        Promise.all([publishersPromise,bookPromise]).then(function (values) {
+            response.render('edit-book.njk',{publishers : values[0], book : values[1][0]});
+        }).catch(next);
     }
 
     renderDetailBook(request, response) {
