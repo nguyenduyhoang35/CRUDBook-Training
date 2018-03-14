@@ -1,25 +1,39 @@
 <html>
-    <head>
+<head>
 
-    </head>
-    <body>
-        <header>
-            <h1>
-                {{book.getTitle()}}
-            </h1>
-        </header>
-        <nav>
-            <ul>
-                <li><a href="/books">Home</a></li>
-            </ul>
-        </nav>
-        <section>
-            <small>
-                {{book.getAuthor()}}
-            </small>
-            <small>
-                {{book.getPublisher().getId()}}
-            </small>
-        </section>
-    </body>
+</head>
+<body>
+<header>
+    <h1>Edit Book</h1>
+</header>
+<section>
+    <form data-url="/book/{{book.getId()}}" data-type="put" >
+        <div>
+            <label for="title">Title</label>
+            <br>
+            <input id="title" name="title" value="{{book.getTitle()}}">
+        </div>
+        <div>
+            <label for="author">Author</label>
+            <br>
+            <input id="author" name="author" value="{{book.getAuthor()}}">
+        </div>
+        <div>
+            <label for="publisher">Publisher</label>
+            <br>
+            <select id="publisher" name="publisher_id">
+                {% for publisher in publishers %}
+                <option value="{{publisher.getId()}}">{{publisher.getId()}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="price">Price</label>
+            <br>
+            <input id="price" type="number" name="price" value="{{book.getPrice()}}">
+        </div>
+        <button type="submit">Add</button>
+    </form>
+</section>
+</body>
 </html>
