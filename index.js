@@ -1,5 +1,4 @@
 const express           = require('express');
-const path              = require('path');
 const nunjucks          = require('nunjucks');
 const bodyParser        = require('body-parser');
 const BookRepository    = require('./book/book-repository');
@@ -10,6 +9,7 @@ const Factory           = require('./book/book-factory');
 const Searcher          = require('./book-searching-service/searcher');
 const BookFactory       = require('./book/book-factory');
 const PublisherProvider = require('./publisher/publisher-provider');
+const SearchCondition   = require('./book-searching-service/search-condition');
 
 let bookFactory = new Factory();
 
@@ -18,7 +18,7 @@ nunjucks.configure('views', {
     express: app
 });
 
-app.use(express.static(path.join('public')));
+app.set('searchCondition', new SearchCondition());
 
 app.set('publisherProvider', new PublisherProvider(knex));
 
