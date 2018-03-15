@@ -38,19 +38,19 @@ class BookController {
      */
     search(request, response, next) {
         request.app.get('book.searcher').search(request.searchCondition)
-            .then(books => response.render('list-book.njk', {books:books}))
+            .then(books => response.render('list-book.njk', {books : books}))
             .catch(next)
     }
 
     detail(request, response, next) {
         request.app.get('book.searcher').search(request.searchCondition)
-            .then(books => response.render('detail.njk', {book:books[0]}))
+            .then(books => response.render('detail.njk', {book : books[0]}))
             .catch(next)
     }
 
     renderAddBook(request, response, next) {
         request.app.get('publisherProvider').provideAll()
-            .then(publishers => response.render('create-book.njk', {publishers:publishers}))
+            .then(publishers => response.render('create-book.njk', {publishers : publishers}))
             .catch(next)
     }
 
