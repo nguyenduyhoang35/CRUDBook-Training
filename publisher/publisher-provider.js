@@ -24,6 +24,24 @@ class PublisherProvider {
                 return publisher;
             });
     }
+
+    /***
+     * @return {Promise<Publisher[]>}
+     */
+    provideAll() {
+        return this.connection.select().from('publishers')
+            .then(function (publisherRowsData) {
+                let publishers;
+                publishers = publisherRowsData.map(function (publisherRowData) {
+                    let publisher = new Publisher(publisherRowData.name);
+                    publisher.setAddress(publisherRowData.address);
+                    publisher.setPhone(publisherRowData.phone_number);
+                    publisher.setId(publisherRowData.id);
+                    return publisher;
+                });
+                return publishers;
+            });
+    }
 }
 
 module.exports = PublisherProvider;
