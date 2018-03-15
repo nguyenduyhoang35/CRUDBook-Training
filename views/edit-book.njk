@@ -24,9 +24,9 @@
                     <select id="publisher" name="publisher_id">
                         {% for publisher in publishers %}
                         {% if publisher.getId() == book.getPublisher().getId() %}
-                        <option value="{{book.getPublisher().getId()}}" selected>{{publisher.getId()}}</option>
+                        <option value="{{book.getPublisher().getId()}}" selected>{{publisher.getName()}}</option>
                         {% else %}
-                        <option value="{{publisher.getId()}}">{{publisher.getId()}}</option>
+                        <option value="{{publisher.getId()}}">{{publisher.getName()}}</option>
                         {% endif %}
                         {% endfor %}
                     </select>
