@@ -5,25 +5,50 @@
     <body>
         <header>
             <h1>Create Book</h1>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script>
+                $(document).ready(function () {
+                    $('#title').focusout(function () {
+                        let value = $(this).val();
+                        if (value.length === 0) {
+                            return;
+                        }
+                        console.log(value);
+                        let url = '/title?keyword='.concat(value);
+                        ajaxCall(url,'get').then(function (data) {
+                            console.log(data);
+                        });
+
+                    });
+
+                    function ajaxCall(url, method) {
+                        return $.ajax({
+                            url : url,
+                            type: method,
+                            dataType : "json"
+                        })
+                    }
+                });
+            </script>
         </header>
         <section>
             <form action="/book" method="post">
                 <div>
                     <label for="title">Title</label>
                     <br>
-                    <input id="title" name="title">
+                    <input id="title" name="title" placeholder="Enter Title">
                 </div>
                 <div>
                     <label for="author">Author</label>
                     <br>
-                    <input id="author" name="author">
+                    <input id="author" name="author" placeholder="Enter Author">
                 </div>
                 <div>
                     <label for="publisher">Publisher</label>
                     <br>
                     <select id="publisher" name="publisher_id">
                         {% for publisher in publishers %}
-                        <option value="{{publisher.getId()}}">{{publisher.getId()}}</option>
+                        <option value="{{publisher.getId()}}">{{publisher.getName()}}</option>
                         {% endfor %}
                     </select>
                 </div>

@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>create-book-ajax</title>
+        <script>
+            let form = document.getElementById('create-form');
+            let title = document.getElementsByName('title').value;
+            let author = document.getElementsByName('author').value;
+            let publisher_id = document.getElementsByName('publisher_id').value;
+            let price = document.getElementsByName('price').value;
+            form.addEventListener('submit', function (event) {
+                let xhtmlRequest = new XMLHttpRequest();
+                xhtmlRequest.onreadystatechange = function () {
+                    if (this.readyState === XMLHttpRequest.DONE) {
+                        alert('ok');
+                    }
+                }
+                xhtmlRequest.open('post', '/book');
+                xhtmlRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhtmlRequest.send({ title:title, author : author, publisher_id : publisher_id, price : price });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+
+        </header>
+        <nav>
+            <a>Home</a>
+            <a>Books</a>
+        </nav>
+        <section>
+            <form id="create-form" >
+                <div>
+                    <label for="title">Title</label>
+                    <br>
+                    <input id="title" name="title">
+                </div>
+                <div>
+                    <label for="author">Author</label>
+                    <br>
+                    <input id="author" name="author">
+                </div>
+                <div>
+                    <label for="publisher">Publisher</label>
+                    <br>
+                    <select id="publisher" name="publisher_id">
+                        {% for publisher in publishers %}
+                        <option value="{{publisher.getId()}}">{{publisher.getName()}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="price">Price</label>
+                    <br>
+                    <input id="price" type="number" name="price">
+                </div>
+                <button type="submit">Add</button>
+            </form>
+        </section>
+    </body>
+</html>

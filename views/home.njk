@@ -1,6 +1,29 @@
 <html>
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                function GetSuggest(url, method, data) {
+                    return $.ajax({
+                        url : url,
+                        type : method,
+                        data : data
+                    })
+                }
+                $('#list').click(function () {
+                    let url = '/book';
+                    GetSuggest(url,'post', {
+                        title : 'ThuyLe',
+                        author: 'author',
+                        publisher_id : 3,
+                        price : 10.3
+                    }).then(function (data) {
+                        console.log(data);
+                    });
+                });
 
+            });
+        </script>
     </head>
     <body>
         <header>
@@ -11,6 +34,7 @@
             <a href="/books">Books</a>
         </nav>
         <section>
+            <button id="list">list</button>
         </section>
     </body>
 </html>

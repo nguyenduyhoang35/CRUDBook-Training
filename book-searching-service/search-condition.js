@@ -2,6 +2,7 @@ const AdvanceSearchCondition   = require('./../book-searching-service/advance-se
 const KeywordSearchCondition   = require('./../book-searching-service/keyword-search-condition');
 const IdSeatrchCondition       = require('./../book-searching-service/id-search-condition');
 const UndeletedSearchCondition = require('./../book-searching-service/undeleted-search-conditon');
+const TitleSearchCondition     = require('./../book-searching-service/title-search-condition');
 
 class SearchCondition {
 
@@ -14,6 +15,8 @@ class SearchCondition {
             return new UndeletedSearchCondition();
         } else if (request.path.toString().startsWith('/book/')) {
             return new IdSeatrchCondition(request.params.id);
+        } else if (request.path === '/title') {
+            return new TitleSearchCondition(request.query.keyword);
         }
     }
 }

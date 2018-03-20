@@ -27,4 +27,6 @@ router.get('/search-basic', SearchConditionMiddleware, bookController.search);
 
 router.get('/search-advance', SearchConditionMiddleware, bookController.search);
 
+router.get('/add', bookController.renderAddBook);
+
 module.exports = router;

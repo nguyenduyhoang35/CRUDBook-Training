@@ -28,10 +28,14 @@ router.post('/book', middlewareOfPost, bookController.createBook);
 
 router.get('/', bookController.renderHomeBook);
 
-router.get('/search-basic', searchConditionMiddleware, bookController.search);
+router.get('/search-basic', searchConditionMiddleware, bookController.searchSuggest);
 
 router.get('/search-advance', searchConditionMiddleware, bookController.search);
 
 router.get('/detail/:id', bookController.renderDetailBook);
+
+router.get('/test', bookController.renderTest);
+
+router.get('/title', searchConditionMiddleware, bookController.validTitle);
 
 module.exports = router;

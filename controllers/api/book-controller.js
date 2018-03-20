@@ -50,6 +50,12 @@ class BookController {
             })))
             .catch(next)
     }
+
+    renderAddBook(request, response, next) {
+        request.app.get('publisherProvider').provideAll()
+            .then(publishers => response.render('create-book-ajax.njk', {publishers : publishers}))
+            .catch(next)
+    }
 }
 
 module.exports = BookController;

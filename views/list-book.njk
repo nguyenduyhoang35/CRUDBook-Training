@@ -4,44 +4,44 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/javascript/list-books.js"></script>
-    <script>
-        $(document).ready(function () {
-        });
-    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="javascript/list-books.js"></script>
+
 </head>
 <body>
     <header>
         <h2>CRUD Books</h2>
     </header>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
+    <nav class="navbar navbar-inverse ">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a id="search-advance-click" href="#">Search-Advance</a></li>
         </ul>
-        <form action="/search-basic" method="get">
-            <input id="search-basic" name="keyword" placeholder="Search..." >
-            <button type="submit">Search</button>
-        </form>
-        <div>
-            <form action="/search-advance" method="get">
-                <input name="title" id="title" placeholder="Enter Title">
-                <input name="author" id="author" placeholder="Enter Author">
-                <input name="publisher" id="publisher" placeholder="Enter publisher">
-                <button type="submit">Search Advance</button>
+            <form class="navbar-form navbar-left" action="/search-basic" method="get" >
+                <div class="form-group">
+                    <input class="form-control" id="search-basic" name="keyword" placeholder="Search..." >
+                    <button class="btn btn-default" type="submit">Search</button>
+                </div>
             </form>
+        <div>
+            <div class="form-group" id="search-advance" hidden>
+                <input class="form-control" name="title" id="title" placeholder="Enter Title">
+                <input class="form-control" name="author" id="author" placeholder="Enter Author">
+                <input class="form-control" name="publisher" id="publisher" placeholder="Enter publisher">
+                <button class="btn btn-default" id="advance-click" >Search Advance</button>
+            </div>
         </div>
-        <button id="List">
-            List
-        </button>
     </nav>
     <section>
-        <a href="/add">New Book</a>
+        <a class="btn btn-primary" href="/add">New Book</a>
         <form id="list-books"></form>
     </section>
 </body>
 <script id="bookTemplate" type="text/html">
     <ul>
-        <li><a href="/book/:id:">:bookName:</a></li>
+        <li><a href="/edit/:id:">:bookName:</a> | <a href="/delete/:id">Delete</a></li>
     </ul>
 </script>
 </html>

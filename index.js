@@ -1,4 +1,5 @@
 const express           = require('express');
+const path              = require('path');
 const nunjucks          = require('nunjucks');
 const bodyParser        = require('body-parser');
 const BookRepository    = require('./book/book-repository');
@@ -17,6 +18,8 @@ nunjucks.configure('views', {
     autoescape: true,
     express: app
 });
+
+app.use(express.static(path.join(__dirname,'public')));
 
 app.set('searchCondition', new SearchCondition());
 
