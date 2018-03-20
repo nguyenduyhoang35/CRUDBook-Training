@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/javascript/list-books.js"></script>
+    <script>
+        $(document).ready(function () {
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -13,7 +19,7 @@
             <li><a href="/">Home</a></li>
         </ul>
         <form action="/search-basic" method="get">
-            <input name="keyword" placeholder="Search...">
+            <input id="search-basic" name="keyword" placeholder="Search..." >
             <button type="submit">Search</button>
         </form>
         <div>
@@ -24,18 +30,18 @@
                 <button type="submit">Search Advance</button>
             </form>
         </div>
+        <button id="List">
+            List
+        </button>
     </nav>
     <section>
         <a href="/add">New Book</a>
-        <ul>
-            {% for book in books %}
-            <li>
-                <a href="/edit/{{book.getId()}}">{{book.getTitle()}}-{{book.getPublisher().getName()}}</a>
-                |<a href="/edit/{{book.getId()}}">Edit</a>
-                |<a href="/delete/{{book.getId()}}">Delete</a>
-            </li>
-            {% endfor %}
-        </ul>
+        <form id="list-books"></form>
     </section>
 </body>
+<script id="bookTemplate" type="text/html">
+    <ul>
+        <li><a href="/book/:id:">:bookName:</a></li>
+    </ul>
+</script>
 </html>
