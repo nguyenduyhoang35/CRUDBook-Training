@@ -127,6 +127,9 @@ class BookController {
         }).catch(next);
     }
 
+    pageNumber(request, response, next) {
+
+    }
     /***
      *
      * @param request
