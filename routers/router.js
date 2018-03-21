@@ -38,4 +38,6 @@ router.get('/test', bookController.renderTest);
 
 router.get('/title', searchConditionMiddleware, bookController.validTitle);
 
+router.get('/pages', bookController.pageNumber);
+
 module.exports = router;
