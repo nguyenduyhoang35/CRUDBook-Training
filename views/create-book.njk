@@ -1,64 +1,86 @@
 <html>
     <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#title').focusout(function () {
+                    let value = $(this).val();
+                    if (value.length === 0) {
+                        return;
+                    }
+                    console.log(value);
+                    let url = '/title?keyword='.concat(value);
+                    ajaxCall(url,'get').then(function (data) {
+                        console.log(data);
+                    });
 
+                });
+
+                function ajaxCall(url, method) {
+                    return $.ajax({
+                        url : url,
+                        type: method,
+                        dataType : "json"
+                    })
+                }
+            });
+        </script>
     </head>
     <body>
         <header>
-            <h1>Create Book</h1>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script>
-                $(document).ready(function () {
-                    $('#title').focusout(function () {
-                        let value = $(this).val();
-                        if (value.length === 0) {
-                            return;
-                        }
-                        console.log(value);
-                        let url = '/title?keyword='.concat(value);
-                        ajaxCall(url,'get').then(function (data) {
-                            console.log(data);
-                        });
-
-                    });
-
-                    function ajaxCall(url, method) {
-                        return $.ajax({
-                            url : url,
-                            type: method,
-                            dataType : "json"
-                        })
-                    }
-                });
-            </script>
+            <nav class="navbar navbar-inverse navbar-static-top ">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/">Home</a></li>
+                    </ul>
+                </div>
+            </nav>
         </header>
-        <section>
-            <form action="/book" method="post">
-                <div>
-                    <label for="title">Title</label>
-                    <br>
-                    <input id="title" name="title" placeholder="Enter Title">
+        <section class="container-fluid">
+                <div class="page-header">
+                    <h1 class="text-center">Create Book</h1>
                 </div>
-                <div>
-                    <label for="author">Author</label>
-                    <br>
-                    <input id="author" name="author" placeholder="Enter Author">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-4" >
+                        <form action="/book" method="post">
+                            <div class="form-group row">
+                                <div class="col-xs-6">
+                                    <label for="title">Title</label>
+                                    <input class="form-control" id="title" name="title" placeholder="Enter Title">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-6">
+                                    <label for="author">Author</label>
+                                    <input class="form-control" id="author" name="author" placeholder="Enter Author">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-6">
+                                    <label for="publisher">Publisher</label>
+                                    <select id="publisher" name="publisher_id" class="form-control">
+                                        {% for publisher in publishers %}
+                                        <option value="{{publisher.getId()}}">{{publisher.getName()}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-6">
+                                    <label for="price">Price</label>
+                                    <input class="form-control" id="price" type="number" name="price">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-6">
+                                    <button class="btn btn-primary"  type="submit">Add</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div>
-                    <label for="publisher">Publisher</label>
-                    <br>
-                    <select id="publisher" name="publisher_id">
-                        {% for publisher in publishers %}
-                        <option value="{{publisher.getId()}}">{{publisher.getName()}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div>
-                    <label for="price">Price</label>
-                    <br>
-                    <input id="price" type="number" name="price">
-                </div>
-                <button type="submit">Add</button>
-            </form>
         </section>
     </body>
 </html>
