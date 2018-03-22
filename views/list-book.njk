@@ -21,55 +21,49 @@
         </nav>
     </header>
     <section class="container-fluid">
-        <div class="page-header">
-            <h2 class="text-center">CRUD Books</h2>
-        </div>
-        <div class="row">
-            <div class="col-xs-4">
-                <a class="btn btn-primary" href="/add">Add</a>
+        <div class="col-md-6 col-md-offset-3">
+            <div class="page-header">
+                <h2 class="text-center">CRUD Books</h2>
             </div>
-        </div>
-        <hr>
-        <div>
-            <form action="/search-basic" method="get" id="form-search-basic" hidden>
-                <div class="form-group row">
-                    <div class="col-xs-3">
-                        <input class="form-control" id="search-basic" name="keyword" placeholder="Enter Keyword" >
-                    </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <a class="btn btn-primary" href="/add">Add</a>
                 </div>
-            </form>
-        </div>
-        <div >
-            <form id="search-advance"   hidden>
-                <div class="form-group row" >
-                    <div class="col-xs-3">
-                        <input class="form-control" name="title" id="title" placeholder="Enter Title">
+            </div>
+            <hr>
+            <div>
+                <form action="/search-basic" method="get" id="form-search-basic" hidden>
+                    <div class="form-group row">
+                        <div class="col-xs-3">
+                            <input class="form-control" id="search-basic" name="keyword" placeholder="Enter Keyword" >
+                        </div>
                     </div>
-                    <div class="col-xs-3">
-                        <input class="form-control" name="author" id="author" placeholder="Enter Author">
+                </form>
+            </div>
+            <div >
+                <form id="search-advance"   hidden>
+                    <div class="form-group row" >
+                        <div class="col-xs-3">
+                            <input class="form-control" name="title" id="title" placeholder="Enter Title">
+                        </div>
+                        <div class="col-xs-3">
+                            <input class="form-control" name="author" id="author" placeholder="Enter Author">
+                        </div>
+                        <div class="col-xs-3">
+                            <input class="form-control" name="publisher" id="publisher" placeholder="Enter publisher">
+                        </div>
+                        <div class="col-xs-3">
+                            <button class="btn btn-primary" id="advance-click" type="submit">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-xs-3">
-                        <input class="form-control" name="publisher" id="publisher" placeholder="Enter publisher">
-                    </div>
-                    <div class="col-xs-3">
-                        <button class="btn btn-primary" id="advance-click" type="submit">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
             <form id="list-books">
 
             </form>
-            <div id="page">
-                <ul class="pagination">
-                    <li ><a href="#">1</a></li>
-                    <li ><a href="#">2</a></li>
-                    <li ><a href="#">3</a></li>
-                    <li class="active"><a href="#">4</a></li>
-                </ul>
-            </div>
+        </div>
     </section>
 </body>
 <script id="bookTemplate" type="text/html">
