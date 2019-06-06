@@ -11,7 +11,9 @@ const Searcher          = require('./book-searching-service/searcher');
 const BookFactory       = require('./book/book-factory');
 const PublisherProvider = require('./publisher/publisher-provider');
 const SearchCondition   = require('./book-searching-service/search-condition');
+const cors = require('cors');
 
+app.use(cors());
 let bookFactory = new Factory();
 
 nunjucks.configure('views', {
@@ -37,8 +39,8 @@ app.use(bodyParser.urlencoded({
     extended : true
 }));
 
-app.use('/', router.router);
+app.use('/', router.routerApi);
 
-app.listen(8080, function () {
-   console.log('Server running in port 8080!');
+app.listen(3001, function () {
+   console.log('Server running in port 3001!');
 });

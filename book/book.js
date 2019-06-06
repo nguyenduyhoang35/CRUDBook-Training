@@ -67,7 +67,7 @@ class Book {
 
     /**
      *
-     * @param {float}price
+     * @param {number}price
      */
     setPrice(price) {
         this.price = price;
