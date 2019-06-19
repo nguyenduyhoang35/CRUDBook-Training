@@ -10,17 +10,17 @@
     <form data-url="/book/{{book.getId()}}" data-type="put" >
         <div>
             <label for="title">Title</label>
-            <br>
-            <input id="title" name="title" value="{{book.getTitle()}}">
+            <br/>
+            <input id="title" name="title" value="{{book.getTitle()}}"/>
         </div>
         <div>
             <label for="author">Author</label>
-            <br>
-            <input id="author" name="author" value="{{book.getAuthor()}}">
+            <br/>
+            <input id="author" name="author" value="{{book.getAuthor()}}"/>
         </div>
         <div>
             <label for="publisher">Publisher</label>
-            <br>
+            <br/>
             <select id="publisher" name="publisher_id">
                 {% for publisher in publishers %}
                 <option value="{{publisher.getId()}}">{{publisher.getId()}}</option>
@@ -29,8 +29,8 @@
         </div>
         <div>
             <label for="price">Price</label>
-            <br>
-            <input id="price" type="number" name="price" value="{{book.getPrice()}}">
+            <br/>
+            <input id="price" type="number" name="price" value="{{book.getPrice()}}"/>
         </div>
         <button type="submit">Add</button>
     </form>

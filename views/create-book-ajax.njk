@@ -13,7 +13,7 @@
                     if (this.readyState === XMLHttpRequest.DONE) {
                         alert('ok');
                     }
-                }
+                };
                 xhtmlRequest.open('post', '/book');
                 xhtmlRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhtmlRequest.send({ title:title, author : author, publisher_id : publisher_id, price : price });
@@ -32,17 +32,17 @@
             <form id="create-form" >
                 <div>
                     <label for="title">Title</label>
-                    <br>
-                    <input id="title" name="title">
+                    <br/>
+                    <input id="title" name="title"/>
                 </div>
                 <div>
                     <label for="author">Author</label>
-                    <br>
-                    <input id="author" name="author">
+                    <br/>
+                    <input id="author" name="author"/>
                 </div>
                 <div>
                     <label for="publisher">Publisher</label>
-                    <br>
+                    <br/>
                     <select id="publisher" name="publisher_id">
                         {% for publisher in publishers %}
                         <option value="{{publisher.getId()}}">{{publisher.getName()}}</option>
@@ -51,8 +51,8 @@
                 </div>
                 <div>
                     <label for="price">Price</label>
-                    <br>
-                    <input id="price" type="number" name="price">
+                    <br/>
+                    <input id="price" type="number" name="price"/>
                 </div>
                 <button type="submit">Add</button>
             </form>
